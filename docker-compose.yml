@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    container_name: nextjs_space
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env.local
+    environment:
+      # specific for nextjs 15 hot reloading in docker
+      - WATCHPACK_POLLING=true
