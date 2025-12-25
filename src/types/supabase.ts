@@ -150,6 +150,8 @@ export type Database = {
         Row: {
           facebook_url: string | null
           headline: string | null
+          hero_subtitle: string | null
+          hero_title: string | null
           id: string
           instagram_url: string | null
           linkedin_url: string | null
@@ -165,6 +167,8 @@ export type Database = {
         Insert: {
           facebook_url?: string | null
           headline?: string | null
+          hero_subtitle?: string | null
+          hero_title?: string | null
           id: string
           instagram_url?: string | null
           linkedin_url?: string | null
@@ -180,6 +184,8 @@ export type Database = {
         Update: {
           facebook_url?: string | null
           headline?: string | null
+          hero_subtitle?: string | null
+          hero_title?: string | null
           id?: string
           instagram_url?: string | null
           linkedin_url?: string | null

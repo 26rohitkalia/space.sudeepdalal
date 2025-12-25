@@ -104,3 +104,7 @@ ADD COLUMN linkedin_url text,
 ADD COLUMN image_url text;
 
 
+-- 3)
+ALTER TABLE public.profiles 
+ADD COLUMN hero_title text DEFAULT 'Sudeep<br>Dalal',
+ADD COLUMN hero_subtitle text DEFAULT 'Assistant Manager<br>Procurement & Supply Chain';

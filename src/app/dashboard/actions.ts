@@ -24,6 +24,8 @@ export async function updateProfile(formData: FormData) {
     linkedin_url: formData.get('linkedin_url'),
     facebook_url: formData.get('facebook_url'),
     instagram_url: formData.get('instagram_url'),
+    hero_title: formData.get('hero_title'),  
+    hero_subtitle: formData.get('hero_subtitle'),
     show_linkedin: formData.get('show_linkedin') === 'on',
     show_facebook: formData.get('show_facebook') === 'on',
     show_instagram: formData.get('show_instagram') === 'on',

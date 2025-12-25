@@ -18,8 +18,7 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
-      const objectUrl = URL.createObjectURL(file)
-      setPreview(objectUrl)
+      setPreview(URL.createObjectURL(file))
     }
   }
 
@@ -44,6 +43,7 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
 
       <form action={handleSubmit} className="bg-white p-10 rounded-[2.5rem] shadow-sm border border-gray-100">
         <div className="grid md:grid-cols-12 gap-12">
+          
           <div className="md:col-span-4 flex flex-col items-center pt-4 space-y-8">
             <div className="relative group cursor-pointer w-64 h-64">
               <div className="w-full h-full rounded-full overflow-hidden border-[8px] border-white shadow-2xl bg-gray-100 relative z-10">
@@ -59,13 +59,7 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
                 <div className="relative bg-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-[0.15em] shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
                   Change
                 </div>
-                <input 
-                  type="file" 
-                  name="profile_image" 
-                  className="hidden" 
-                  accept="image/png, image/jpeg" 
-                  onChange={handleImageChange}
-                />
+                <input type="file" name="profile_image" className="hidden" accept="image/png, image/jpeg" onChange={handleImageChange} />
               </label>
             </div>
             
@@ -74,11 +68,40 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
               <p className="text-xs text-gray-400 mt-1">JPG, PNG up to 5MB</p>
             </div>
           </div>
+
           <div className="md:col-span-8 space-y-8">
+            
+            <div className="bg-gray-900 text-white p-6 rounded-2xl border border-gray-800 space-y-6">
+              <h3 className="text-sm font-bold text-gray-400 border-b border-gray-700 pb-2 uppercase tracking-widest">
+                Hero Section (Black Card)
+              </h3>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Card Title (Name)</label>
+                <textarea 
+                  name="hero_title" 
+                  defaultValue={profile.hero_title || 'Sudeep<br>Dalal'} 
+                  className="w-full p-4 rounded-xl bg-gray-800 border-0 text-white font-mono text-2xl focus:ring-1 focus:ring-gray-500" 
+                  rows={2} 
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Card Subtitle (Role)</label>
+                <textarea 
+                  name="hero_subtitle" 
+                  defaultValue={profile.hero_subtitle || 'Assistant Manager'} 
+                  className="w-full p-4 rounded-xl bg-gray-800 border-0 text-gray-300 font-mono text-sm focus:ring-1 focus:ring-gray-500" 
+                  rows={2} 
+                />
+              </div>
+            </div>
+
             <div className="bg-gray-50/50 p-6 rounded-2xl border border-gray-100/50 space-y-6">
+              <h3 className="text-sm font-bold text-gray-400 border-b border-gray-200 pb-2 uppercase tracking-widest">
+                Main Page Content
+              </h3>
               <div>
                 <label className="flex justify-between items-center mb-3">
-                  <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Headline</span>
+                  <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Page Headline</span>
                   <span className="text-[10px] text-gray-400 bg-white px-2 py-1 rounded border border-gray-100">Supports HTML</span>
                 </label>
                 <textarea 
@@ -98,8 +121,9 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
               </div>
             </div>
 
+            {/* SOCIALS */}
             <div className="bg-gray-50/50 p-6 rounded-2xl border border-gray-100/50 space-y-6">
-              <h3 className="text-sm font-bold text-gray-900 border-b border-gray-200 pb-2">Social Connections</h3>
+              <h3 className="text-sm font-bold text-gray-900 border-b border-gray-200 pb-2 uppercase tracking-widest">Social Connections</h3>
               
               <div className="flex items-center gap-4">
                 <div className="w-8 h-8 flex items-center justify-center bg-blue-600 text-white rounded shrink-0 font-bold text-xs">LI</div>
