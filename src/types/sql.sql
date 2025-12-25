@@ -108,3 +108,16 @@ ADD COLUMN image_url text;
 ALTER TABLE public.profiles 
 ADD COLUMN hero_title text DEFAULT 'Sudeep<br>Dalal',
 ADD COLUMN hero_subtitle text DEFAULT 'Assistant Manager<br>Procurement & Supply Chain';
+
+-- 4
+ALTER TABLE public.profiles 
+ADD COLUMN theme text DEFAULT 'default',
+ADD COLUMN font_family text DEFAULT 'Inter',
+ADD COLUMN custom_font_url text;
+
+INSERT INTO storage.buckets (id, name, public) 
+VALUES ('fonts', 'fonts', true)
+ON CONFLICT (id) DO NOTHING;
+
+CREATE POLICY "Fonts are publicly accessible." ON storage.objects FOR SELECT USING (bucket_id = 'fonts');
+CREATE POLICY "Users can upload fonts." ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'fonts' AND auth.role() = 'authenticated');

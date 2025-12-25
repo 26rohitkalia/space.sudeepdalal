@@ -40,7 +40,12 @@ export default function Hero({ profile }: { profile: Tables<'profiles'> }) {
     <>
       <div id="hero-card" className={`mode-${mode}`}>
         <img src={getImageUrl(profile.profile_image)} alt="Hero" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80"></div>
+        
+        <div 
+          className="absolute inset-0 opacity-80" 
+          style={{ background: 'var(--hero-overlay)' }}
+        ></div>
+        
         <HeroText 
             headline={profile.hero_title || 'Sudeep<br>Dalal'} 
             subHeadline={profile.hero_subtitle || 'Assistant Manager'} 

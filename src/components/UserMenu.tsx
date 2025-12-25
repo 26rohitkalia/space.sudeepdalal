@@ -31,7 +31,7 @@ export default function UserMenu({ user }: { user: User | null }) {
     return (
       <Link 
         href="/login" 
-        className="px-6 py-2.5 rounded-full bg-[#111] text-white hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 duration-300 text-[11px] font-semibold tracking-widest"
+        className="px-6 py-2.5 rounded-full bg-[#111] text-white hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 duration-300 text-[11px] font-semibold tracking-widest cursor-pointer"
       >
         Login
       </Link>
@@ -63,15 +63,18 @@ export default function UserMenu({ user }: { user: User | null }) {
         <Link 
           href="/dashboard" 
           onClick={() => setIsOpen(false)}
-          className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition"
+          className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition cursor-pointer"
         >
           Profile Dashboard
         </Link>
         
-        <button className="w-full text-left px-4 py-3 text-sm text-gray-400 cursor-not-allowed hover:bg-gray-50 transition flex justify-between items-center">
+        <Link 
+          href="/settings"
+          onClick={() => setIsOpen(false)}
+          className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition cursor-pointer"
+        >
           Settings 
-          <span className="text-[9px] border border-gray-200 rounded px-1 text-gray-400">SOON</span>
-        </button>
+        </Link>
         
         <button className="w-full text-left px-4 py-3 text-sm text-gray-400 cursor-not-allowed hover:bg-gray-50 transition flex justify-between items-center">
           Blog 
