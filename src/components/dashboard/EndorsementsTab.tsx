@@ -64,18 +64,23 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
               step="100" 
               value={speed}
               onChange={(e) => setSpeed(parseInt(e.target.value))}
-              className="accent-white"
+              className="accent-white cursor-pointer"
             />
             <span className="text-xs font-mono mt-1">{speed}ms</span>
           </div>
-          <button type="submit" className="bg-white text-black px-4 py-2 rounded-lg text-xs font-bold hover:bg-gray-200 transition">Save Speed</button>
+          <button type="submit" className="bg-white text-black px-4 py-2 rounded-lg text-xs font-bold hover:bg-gray-200 transition cursor-pointer">Save Speed</button>
         </form>
       </div>
 
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Endorsements</h2>
         {!isFormOpen && (
-          <button onClick={handleAddNew} className="bg-black text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg hover:bg-gray-800 transition">+ Add Endorsement</button>
+          <button 
+            onClick={handleAddNew} 
+            className="bg-black text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg hover:bg-gray-800 transition cursor-pointer"
+          >
+            + Add Endorsement
+          </button>
         )}
       </div>
 
@@ -83,7 +88,7 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-blue-100 ring-2 ring-blue-50/50 transition-all">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-sm font-bold text-gray-500 uppercase">{editingId ? 'Edit' : 'Add New'}</h3>
-            <button onClick={handleCancel} className="text-xs text-red-400 font-bold uppercase hover:text-red-600">Cancel</button>
+            <button onClick={handleCancel} className="text-xs text-red-400 font-bold uppercase hover:text-red-600 cursor-pointer">Cancel</button>
           </div>
 
           <form action={async (formData) => { 
@@ -94,7 +99,7 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
             {editingId && <input type="hidden" name="id" value={editingId} />}
             <div className="grid grid-cols-12 gap-6 mb-4">
               <div className="col-span-3 flex flex-col items-center gap-2">
-                <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-100 border border-gray-200 relative group">
+                <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-100 border border-gray-200 relative group cursor-pointer">
                   {preview ? (
                      <img src={preview} className="w-full h-full object-cover" />
                   ) : (
@@ -110,7 +115,7 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
                 
                 <input name="linkedin_url" placeholder="LinkedIn Profile URL" defaultValue={endorsements.find(e => e.id === editingId)?.linkedin_url || ''} className="col-span-2 p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none" />
                 
-                <select name="color_class" defaultValue={endorsements.find(e => e.id === editingId)?.color_class || 'from-blue-500 to-blue-700'} className="col-span-2 p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none">
+                <select name="color_class" defaultValue={endorsements.find(e => e.id === editingId)?.color_class || 'from-blue-500 to-blue-700'} className="col-span-2 p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none cursor-pointer">
                   <option value="from-blue-500 to-blue-700">Fallback: Blue Gradient</option>
                   <option value="from-purple-500 to-pink-500">Fallback: Purple Gradient</option>
                   <option value="bg-gray-800">Fallback: Solid Dark</option>
@@ -120,7 +125,7 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
               </div>
             </div>
 
-            <button type="submit" className="w-full bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition transform active:scale-[0.98]">
+            <button type="submit" className="w-full bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition transform active:scale-[0.98] cursor-pointer">
               {editingId ? 'Update Endorsement' : 'Save Endorsement'}
             </button>
           </form>
@@ -144,7 +149,7 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
                   <h4 className="font-bold text-sm truncate">{end.name}</h4>
                   <div className="text-[10px] text-gray-500 uppercase truncate">{end.role}</div>
                   {end.linkedin_url && (
-                    <a href={end.linkedin_url} target="_blank" className="text-[10px] text-blue-500 hover:underline flex items-center gap-1 mt-0.5">
+                    <a href={end.linkedin_url} target="_blank" className="text-[10px] text-blue-500 hover:underline flex items-center gap-1 mt-0.5 cursor-pointer">
                        View LinkedIn
                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                     </a>
@@ -154,9 +159,9 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
               <p className="text-gray-600 text-sm italic line-clamp-3">"{end.text}"</p>
             </div>
             <div className="flex gap-3 text-sm mt-4 pt-4 border-t border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity">
-              <button onClick={() => handleEdit(end)} className="text-blue-500 hover:text-blue-700 font-bold">Edit</button>
+              <button onClick={() => handleEdit(end)} className="text-blue-500 hover:text-blue-700 font-bold cursor-pointer">Edit</button>
               <span className="text-gray-300">|</span>
-              <button onClick={() => deleteEndorsement(end.id)} className="text-red-400 hover:text-red-600">Delete</button>
+              <button onClick={() => deleteEndorsement(end.id)} className="text-red-400 hover:text-red-600 cursor-pointer">Delete</button>
             </div>
           </div>
         ))}

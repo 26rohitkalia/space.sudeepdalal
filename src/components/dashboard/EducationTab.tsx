@@ -28,7 +28,10 @@ export default function EducationTab({ education }: { education: Tables<'educati
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Education</h2>
         {!isFormOpen && (
-          <button onClick={handleAddNew} className="bg-black text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg hover:bg-gray-800 transition">
+          <button 
+            onClick={handleAddNew} 
+            className="bg-black text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg hover:bg-gray-800 transition cursor-pointer"
+          >
             + Add Education
           </button>
         )}
@@ -38,7 +41,7 @@ export default function EducationTab({ education }: { education: Tables<'educati
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-blue-100 ring-2 ring-blue-50/50 transition-all">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-sm font-bold text-gray-500 uppercase">{editingId ? 'Edit' : 'Add New'}</h3>
-            <button onClick={handleCancel} className="text-xs text-red-400 font-bold uppercase hover:text-red-600">Cancel</button>
+            <button onClick={handleCancel} className="text-xs text-red-400 font-bold uppercase hover:text-red-600 cursor-pointer">Cancel</button>
           </div>
 
           <form action={async (formData) => { await upsertEducation(formData); handleCancel(); }}>
@@ -48,7 +51,7 @@ export default function EducationTab({ education }: { education: Tables<'educati
               <select 
                 name="type" 
                 defaultValue={education.find(e => e.id === editingId)?.type || 'POSTGRADUATE'}
-                className="p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none"
+                className="p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none cursor-pointer"
               >
                 <option value="POSTGRADUATE">Postgraduate</option>
                 <option value="UNDERGRADUATE">Undergraduate</option>
@@ -59,7 +62,7 @@ export default function EducationTab({ education }: { education: Tables<'educati
               <input name="year" placeholder="Year (e.g. 2019-2023)" defaultValue={education.find(e => e.id === editingId)?.year} required className="p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none" />
             </div>
 
-            <button type="submit" className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition transform active:scale-95">
+            <button type="submit" className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition transform active:scale-95 cursor-pointer">
               {editingId ? 'Update' : 'Save'}
             </button>
           </form>
@@ -78,9 +81,9 @@ export default function EducationTab({ education }: { education: Tables<'educati
               <div className="text-xs text-gray-400 mt-1">{edu.institution} | {edu.year}</div>
             </div>
             <div className="flex gap-3 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-              <button onClick={() => handleEdit(edu)} className="text-blue-500 hover:text-blue-700 font-bold">Edit</button>
+              <button onClick={() => handleEdit(edu)} className="text-blue-500 hover:text-blue-700 font-bold cursor-pointer">Edit</button>
               <span className="text-gray-300">|</span>
-              <button onClick={() => deleteEducation(edu.id)} className="text-red-400 hover:text-red-600">Delete</button>
+              <button onClick={() => deleteEducation(edu.id)} className="text-red-400 hover:text-red-600 cursor-pointer">Delete</button>
             </div>
           </div>
         ))}

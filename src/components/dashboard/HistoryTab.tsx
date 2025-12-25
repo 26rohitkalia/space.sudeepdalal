@@ -36,7 +36,7 @@ export default function HistoryTab({ experiences }: { experiences: Tables<'exper
         {!isFormOpen && (
           <button 
             onClick={handleAddNew}
-            className="bg-black text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg hover:bg-gray-800 transition"
+            className="bg-black text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg hover:bg-gray-800 transition cursor-pointer"
           >
             + Add Experience
           </button>
@@ -49,7 +49,7 @@ export default function HistoryTab({ experiences }: { experiences: Tables<'exper
             <h3 className="text-sm font-bold text-gray-500 uppercase">
               {editingId ? 'Edit Experience' : 'Add New Experience'}
             </h3>
-            <button onClick={handleCancel} className="text-xs text-red-400 font-bold uppercase hover:text-red-600">
+            <button onClick={handleCancel} className="text-xs text-red-400 font-bold uppercase hover:text-red-600 cursor-pointer">
               Cancel
             </button>
           </div>
@@ -85,7 +85,7 @@ export default function HistoryTab({ experiences }: { experiences: Tables<'exper
               <select 
                 name="color_class" 
                 defaultValue={experiences.find(e => e.id === editingId)?.color_class || 'bg-blue-600'}
-                className="p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none"
+                className="p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none cursor-pointer"
               >
                 <option value="bg-blue-600">Blue Dot</option>
                 <option value="bg-gray-300">Gray Dot</option>
@@ -100,7 +100,7 @@ export default function HistoryTab({ experiences }: { experiences: Tables<'exper
               <input type="hidden" name="description" value={description} />
             </div>
 
-            <button type="submit" className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition transform active:scale-95">
+            <button type="submit" className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition transform active:scale-95 cursor-pointer">
               {editingId ? 'Update Experience' : 'Save Experience'}
             </button>
           </form>
@@ -129,9 +129,9 @@ export default function HistoryTab({ experiences }: { experiences: Tables<'exper
             </div>
 
             <div className="flex gap-3 text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-              <button onClick={() => handleEdit(exp)} className="text-blue-500 hover:text-blue-700 font-bold">Edit</button>
+              <button onClick={() => handleEdit(exp)} className="text-blue-500 hover:text-blue-700 font-bold cursor-pointer">Edit</button>
               <span className="text-gray-300">|</span>
-              <button onClick={() => deleteExperience(exp.id)} className="text-red-400 hover:text-red-600">Delete</button>
+              <button onClick={() => deleteExperience(exp.id)} className="text-red-400 hover:text-red-600 cursor-pointer">Delete</button>
             </div>
           </div>
         ))}

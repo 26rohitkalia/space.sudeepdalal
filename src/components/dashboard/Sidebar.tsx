@@ -33,7 +33,7 @@ export default function Sidebar({ profileImage }: SidebarProps) {
         <span className={`${!sidebarOpen && 'hidden'} font-bold tracking-widest text-xs uppercase text-gray-400 whitespace-nowrap`}>
           Control Center
         </span>
-        <button onClick={() => setSidebarOpen(!sidebarOpen)} className="text-gray-400 hover:text-white">
+        <button onClick={() => setSidebarOpen(!sidebarOpen)} className="text-gray-400 hover:text-white cursor-pointer">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
       </div>
@@ -84,7 +84,7 @@ export default function Sidebar({ profileImage }: SidebarProps) {
       </nav>
       
       <div className="p-4 border-t border-gray-800 overflow-hidden">
-        <button onClick={handleLogout} className="flex items-center gap-4 p-2 text-red-400 hover:text-red-300 transition w-full whitespace-nowrap">
+        <button onClick={handleLogout} className="flex items-center gap-4 p-2 text-red-400 hover:text-red-300 transition w-full whitespace-nowrap cursor-pointer">
           <svg className="w-5 h-5 min-w-[1.25rem]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
           <span className={`${!sidebarOpen && 'hidden'} text-xs font-bold uppercase tracking-widest`}>Log Out</span>
         </button>

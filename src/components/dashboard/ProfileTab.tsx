@@ -80,7 +80,7 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
                 <textarea 
                   name="hero_title" 
                   defaultValue={profile.hero_title || 'Sudeep<br>Dalal'} 
-                  className="w-full p-4 rounded-xl bg-gray-800 border-0 text-white font-mono text-2xl focus:ring-1 focus:ring-gray-500" 
+                  className="w-full p-4 rounded-xl bg-gray-800 border-0 text-white font-mono text-2xl focus:ring-1 focus:ring-gray-500 focus:outline-none" 
                   rows={2} 
                 />
               </div>
@@ -89,7 +89,7 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
                 <textarea 
                   name="hero_subtitle" 
                   defaultValue={profile.hero_subtitle || 'Assistant Manager'} 
-                  className="w-full p-4 rounded-xl bg-gray-800 border-0 text-gray-300 font-mono text-sm focus:ring-1 focus:ring-gray-500" 
+                  className="w-full p-4 rounded-xl bg-gray-800 border-0 text-gray-300 font-mono text-sm focus:ring-1 focus:ring-gray-500 focus:outline-none" 
                   rows={2} 
                 />
               </div>
@@ -107,7 +107,7 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
                 <textarea 
                   name="headline" 
                   defaultValue={profile.headline || ''}
-                  className="w-full p-4 rounded-xl border-0 shadow-sm focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+                  className="w-full p-4 rounded-xl border-0 shadow-sm focus:ring-2 focus:ring-blue-500 font-mono text-sm focus:outline-none"
                   rows={2}
                 />
               </div>
@@ -116,7 +116,7 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
                 <textarea 
                   name="sub_headline"
                   defaultValue={profile.sub_headline || ''}
-                  className="w-full p-4 rounded-xl border-0 shadow-sm focus:ring-2 focus:ring-blue-500 h-48 font-mono text-sm"
+                  className="w-full p-4 rounded-xl border-0 shadow-sm focus:ring-2 focus:ring-blue-500 h-48 font-mono text-sm focus:outline-none"
                 />
               </div>
             </div>
@@ -126,10 +126,10 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
               <div className="flex items-center gap-4">
                 <div className="w-8 h-8 flex items-center justify-center bg-blue-600 text-white rounded shrink-0 font-bold text-xs">LI</div>
                 <div className="flex-1">
-                  <input type="text" name="linkedin_url" defaultValue={profile.linkedin_url || ''} placeholder="LinkedIn URL" className="w-full text-sm p-3 border-0 shadow-sm rounded-xl" />
+                  <input type="text" name="linkedin_url" defaultValue={profile.linkedin_url || ''} placeholder="LinkedIn URL" className="w-full text-sm p-3 border-0 shadow-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </div>
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" name="show_linkedin" defaultChecked={profile.show_linkedin || false} className="rounded text-blue-600 w-4 h-4" />
+                  <input type="checkbox" name="show_linkedin" defaultChecked={profile.show_linkedin || false} className="rounded text-blue-600 w-4 h-4 cursor-pointer" />
                   <span className="text-xs font-bold text-gray-500 uppercase">Show</span>
                 </label>
               </div>
@@ -137,10 +137,10 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
               <div className="flex items-center gap-4">
                 <div className="w-8 h-8 flex items-center justify-center bg-blue-800 text-white rounded shrink-0 font-bold text-xs">FB</div>
                 <div className="flex-1">
-                  <input type="text" name="facebook_url" defaultValue={profile.facebook_url || ''} placeholder="Facebook URL" className="w-full text-sm p-3 border-0 shadow-sm rounded-xl" />
+                  <input type="text" name="facebook_url" defaultValue={profile.facebook_url || ''} placeholder="Facebook URL" className="w-full text-sm p-3 border-0 shadow-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </div>
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" name="show_facebook" defaultChecked={profile.show_facebook || false} className="rounded text-blue-600 w-4 h-4" />
+                  <input type="checkbox" name="show_facebook" defaultChecked={profile.show_facebook || false} className="rounded text-blue-600 w-4 h-4 cursor-pointer" />
                   <span className="text-xs font-bold text-gray-500 uppercase">Show</span>
                 </label>
               </div>
@@ -148,10 +148,10 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
               <div className="flex items-center gap-4">
                 <div className="w-8 h-8 flex items-center justify-center bg-pink-600 text-white rounded shrink-0 font-bold text-xs">IG</div>
                 <div className="flex-1">
-                  <input type="text" name="instagram_url" defaultValue={profile.instagram_url || ''} placeholder="Instagram URL" className="w-full text-sm p-3 border-0 shadow-sm rounded-xl" />
+                  <input type="text" name="instagram_url" defaultValue={profile.instagram_url || ''} placeholder="Instagram URL" className="w-full text-sm p-3 border-0 shadow-sm rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </div>
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" name="show_instagram" defaultChecked={profile.show_instagram || false} className="rounded text-blue-600 w-4 h-4" />
+                  <input type="checkbox" name="show_instagram" defaultChecked={profile.show_instagram || false} className="rounded text-blue-600 w-4 h-4 cursor-pointer" />
                   <span className="text-xs font-bold text-gray-500 uppercase">Show</span>
                 </label>
               </div>
@@ -162,7 +162,7 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
               <button 
                 type="submit" 
                 disabled={loading}
-                className="bg-[#111] text-white px-10 py-3.5 rounded-xl font-semibold hover:bg-black hover:scale-[1.02] transition-all shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#111] text-white px-10 py-3.5 rounded-xl font-semibold hover:bg-gray-800 hover:scale-[1.02] transition-all shadow-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 {loading ? 'Saving...' : 'Save Changes'}
               </button>

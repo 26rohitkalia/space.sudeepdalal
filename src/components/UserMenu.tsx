@@ -42,7 +42,7 @@ export default function UserMenu({ user }: { user: User | null }) {
     <div className="relative" ref={menuRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)} 
-        className="flex items-center gap-1 text-gray-500 hover:text-black transition-colors uppercase text-[11px] font-semibold tracking-widest"
+        className="flex items-center gap-1 text-gray-500 hover:text-black hover:bg-gray-100 px-3 py-1.5 rounded-lg transition-all uppercase text-[11px] font-semibold tracking-widest cursor-pointer"
       >
         Manager
         <svg className={`w-3 h-3 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,7 +82,7 @@ export default function UserMenu({ user }: { user: User | null }) {
         
         <button 
           onClick={handleLogout}
-          className="w-full text-left px-4 py-3 text-sm text-red-500 hover:bg-red-50 transition font-medium"
+          className="w-full text-left px-4 py-3 text-sm text-red-500 hover:bg-red-50 transition font-medium cursor-pointer"
         >
           Log Out
         </button>
