@@ -22,10 +22,10 @@ const MenuButton = ({
   <button
     type="button"
     onClick={onClick}
-    className={`p-2 rounded-lg transition-all ${
+    className={`p-2 rounded-lg transition-all cursor-pointer ${
       isActive 
-        ? 'bg-black text-white shadow-md' 
-        : 'text-gray-400 hover:bg-gray-100 hover:text-gray-900'
+        ? 'bg-accent text-accent-foreground shadow-md' 
+        : 'text-foreground/40 hover:bg-background hover:text-foreground'
     }`}
   >
     {children}
@@ -45,7 +45,7 @@ export default function RichTextEditor({ content, onChange }: EditorProps) {
     content: content,
     editorProps: {
       attributes: {
-        class: 'prose prose-sm sm:prose-base focus:outline-none min-h-[150px] px-4 py-3',
+        class: 'prose prose-sm sm:prose-base focus:outline-none min-h-[150px] px-4 py-3 text-foreground prose-p:text-foreground prose-strong:text-foreground',
       },
     },
     onUpdate: ({ editor }) => {
@@ -56,8 +56,8 @@ export default function RichTextEditor({ content, onChange }: EditorProps) {
   if (!editor) return null
 
   return (
-    <div className="border border-gray-200 rounded-xl overflow-hidden bg-white focus-within:ring-2 focus-within:ring-blue-500/20 transition-all">
-      <div className="flex items-center gap-1 p-2 border-b border-gray-100 bg-gray-50/50">
+    <div className="border border-card-border rounded-xl overflow-hidden bg-background focus-within:ring-2 focus-within:ring-accent/20 transition-all text-foreground">
+      <div className="flex items-center gap-1 p-2 border-b border-card-border bg-card-bg">
         <MenuButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           isActive={editor.isActive('bold')}
@@ -76,7 +76,7 @@ export default function RichTextEditor({ content, onChange }: EditorProps) {
         >
           <Strikethrough className="w-4 h-4" />
         </MenuButton>
-        <div className="w-px h-4 bg-gray-200 mx-1" />
+        <div className="w-px h-4 bg-card-border mx-1" />
         <MenuButton
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           isActive={editor.isActive('bulletList')}

@@ -31,11 +31,11 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="bg-[#f4f4f5] min-h-screen pt-28 pb-8 px-8 font-sans antialiased text-gray-900 flex flex-col">
-      <div className="flex flex-1 bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 max-w-7xl mx-auto w-full min-h-[600px]">
+    <div className="bg-background min-h-screen pt-28 pb-8 px-8 font-sans antialiased text-foreground flex flex-col">
+      <div className="flex flex-1 bg-card-bg rounded-3xl shadow-xl overflow-hidden border border-card-border max-w-7xl mx-auto w-full min-h-[600px]">
         <Sidebar profileImage={profileImage} />
         
-        <main className="flex-1 bg-gray-50 h-full overflow-y-auto p-10 relative custom-scrollbar">
+        <main className="flex-1 bg-background/50 h-full overflow-y-auto p-10 relative custom-scrollbar">
           {children}
         </main>
       </div>

@@ -35,11 +35,13 @@ export default async function RootLayout({
       if (data) themeSettings = data as any
   }
 
+  const activeTheme = themeSettings.theme || 'default';
+
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${spaceMono.variable} ${oswald.variable}`}>
-      <body className="font-sans antialiased bg-[var(--background)] text-[var(--foreground)]">
+    <html lang="en" data-theme={activeTheme} className={`${inter.variable} ${playfair.variable} ${spaceMono.variable} ${oswald.variable}`}>
+      <body className="font-sans antialiased bg-background text-foreground">
         <ThemeRegistry 
-            theme={themeSettings.theme} 
+            theme={activeTheme} 
             fontFamily={themeSettings.font_family}
             customFontUrl={themeSettings.custom_font_url}
         />

@@ -31,7 +31,8 @@ export default function UserMenu({ user }: { user: User | null }) {
     return (
       <Link 
         href="/login" 
-        className="px-6 py-2.5 rounded-full bg-[#111] text-white hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 duration-300 text-[11px] font-semibold tracking-widest cursor-pointer"
+        // Themed Login Button
+        className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground hover:opacity-90 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 duration-300 text-[11px] font-semibold tracking-widest cursor-pointer"
       >
         Login
       </Link>
@@ -42,7 +43,8 @@ export default function UserMenu({ user }: { user: User | null }) {
     <div className="relative" ref={menuRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)} 
-        className="flex items-center gap-1 text-gray-500 hover:text-black hover:bg-gray-100 px-3 py-1.5 rounded-lg transition-all uppercase text-[11px] font-semibold tracking-widest cursor-pointer"
+        // Themed Toggle Button
+        className="flex items-center gap-1 text-foreground/60 hover:text-foreground hover:bg-foreground/5 px-3 py-1.5 rounded-lg transition-all uppercase text-[11px] font-semibold tracking-widest cursor-pointer"
       >
         Manager
         <svg className={`w-3 h-3 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,19 +53,20 @@ export default function UserMenu({ user }: { user: User | null }) {
       </button>
 
       <div 
-        className={`absolute right-0 mt-4 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden py-1 z-50 transition-all duration-200 origin-top-right ${
+        // Themed Dropdown Container
+        className={`absolute right-0 mt-4 w-48 bg-card-bg rounded-xl shadow-2xl border border-card-border overflow-hidden py-1 z-50 transition-all duration-200 origin-top-right ${
           isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
         }`}
       >
-        <div className="px-4 py-3 border-b border-gray-50">
-           <p className="text-[10px] text-gray-400 uppercase tracking-widest">Signed in as</p>
-           <p className="text-xs font-bold truncate">{user.email}</p>
+        <div className="px-4 py-3 border-b border-card-border">
+           <p className="text-[10px] text-foreground/40 uppercase tracking-widest">Signed in as</p>
+           <p className="text-xs font-bold truncate text-foreground">{user.email}</p>
         </div>
 
         <Link 
           href="/dashboard" 
           onClick={() => setIsOpen(false)}
-          className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition cursor-pointer"
+          className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer"
         >
           Profile Dashboard
         </Link>
@@ -71,21 +74,21 @@ export default function UserMenu({ user }: { user: User | null }) {
         <Link 
           href="/settings"
           onClick={() => setIsOpen(false)}
-          className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition cursor-pointer"
+          className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer"
         >
-          Settings 
+          Settings
         </Link>
         
-        <button className="w-full text-left px-4 py-3 text-sm text-gray-400 cursor-not-allowed hover:bg-gray-50 transition flex justify-between items-center">
+        <button className="w-full text-left px-4 py-3 text-sm text-foreground/30 cursor-not-allowed hover:bg-foreground/5 transition flex justify-between items-center">
           Blog 
-          <span className="text-[9px] border border-gray-200 rounded px-1 text-gray-400">SOON</span>
+          <span className="text-[9px] border border-card-border rounded px-1 text-foreground/30">SOON</span>
         </button>
         
-        <div className="border-t border-gray-100 my-1"></div>
+        <div className="border-t border-card-border my-1"></div>
         
         <button 
           onClick={handleLogout}
-          className="w-full text-left px-4 py-3 text-sm text-red-500 hover:bg-red-50 transition font-medium cursor-pointer"
+          className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 transition font-medium cursor-pointer"
         >
           Log Out
         </button>

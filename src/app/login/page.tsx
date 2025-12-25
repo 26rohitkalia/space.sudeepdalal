@@ -8,11 +8,11 @@ export default async function LoginPage({
   const params = await searchParams
   
   return (
-    <div className="flex justify-center items-center min-h-[60vh]">
+    <div className="flex justify-center items-center min-h-[60vh] bg-background">
       <div className="w-full max-w-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
         <div className="text-center mb-10">
-          <h2 className="text-2xl font-bold tracking-tight">Welcome back</h2>
-          <p className="text-gray-500 mt-2">Sign in to manage your portfolio.</p>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">Welcome back</h2>
+          <p className="text-foreground/50 mt-2">Sign in to manage your portfolio.</p>
         </div>
 
         <form action={login} className="space-y-4">
@@ -22,7 +22,7 @@ export default async function LoginPage({
               type="email"
               placeholder="Email"
               required
-              className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition shadow-sm placeholder-gray-400"
+              className="w-full bg-card-bg border border-card-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition shadow-sm placeholder-foreground/40"
             />
           </div>
           <div>
@@ -31,13 +31,13 @@ export default async function LoginPage({
               type="password"
               placeholder="Password"
               required
-              className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition shadow-sm placeholder-gray-400"
+              className="w-full bg-card-bg border border-card-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition shadow-sm placeholder-foreground/40"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-black text-white font-medium py-3 rounded-lg hover:bg-gray-800 transition shadow-lg transform active:scale-[0.98]"
+            className="w-full bg-foreground text-background font-medium py-3 rounded-lg hover:opacity-90 transition shadow-lg transform active:scale-[0.98] cursor-pointer"
           >
             Sign In
           </button>

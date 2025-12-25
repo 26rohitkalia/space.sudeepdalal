@@ -49,10 +49,10 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
-      <div className="bg-gray-900 text-white p-6 rounded-2xl shadow-lg flex justify-between items-center">
+      <div className="bg-accent text-accent-foreground p-6 rounded-2xl shadow-lg flex justify-between items-center">
         <div>
           <h3 className="font-bold text-lg">Ticker Speed</h3>
-          <p className="text-xs text-gray-400">Controls scroll speed (lower is faster).</p>
+          <p className="text-xs text-accent-foreground/60">Controls scroll speed (lower is faster).</p>
         </div>
         <form action={updateTickerSpeed} className="flex items-center gap-4">
           <div className="flex flex-col items-center">
@@ -64,20 +64,20 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
               step="100" 
               value={speed}
               onChange={(e) => setSpeed(parseInt(e.target.value))}
-              className="accent-white cursor-pointer"
+              className="accent-accent-foreground cursor-pointer"
             />
             <span className="text-xs font-mono mt-1">{speed}ms</span>
           </div>
-          <button type="submit" className="bg-white text-black px-4 py-2 rounded-lg text-xs font-bold hover:bg-gray-200 transition cursor-pointer">Save Speed</button>
+          <button type="submit" className="bg-background text-foreground px-4 py-2 rounded-lg text-xs font-bold hover:opacity-80 transition cursor-pointer">Save Speed</button>
         </form>
       </div>
 
       <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Endorsements</h2>
+        <h2 className="text-3xl font-bold text-foreground tracking-tight">Endorsements</h2>
         {!isFormOpen && (
           <button 
             onClick={handleAddNew} 
-            className="bg-black text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg hover:bg-gray-800 transition cursor-pointer"
+            className="bg-accent text-accent-foreground px-5 py-2 rounded-lg text-sm font-bold shadow-lg hover:opacity-90 transition cursor-pointer"
           >
             + Add Endorsement
           </button>
@@ -85,9 +85,9 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
       </div>
 
       {isFormOpen && (
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-blue-100 ring-2 ring-blue-50/50 transition-all">
+        <div className="bg-card-bg p-6 rounded-2xl shadow-sm border border-card-border transition-all">
           <div className="flex justify-between items-center mb-6">
-            <h3 className="text-sm font-bold text-gray-500 uppercase">{editingId ? 'Edit' : 'Add New'}</h3>
+            <h3 className="text-sm font-bold text-foreground/50 uppercase">{editingId ? 'Edit' : 'Add New'}</h3>
             <button onClick={handleCancel} className="text-xs text-red-400 font-bold uppercase hover:text-red-600 cursor-pointer">Cancel</button>
           </div>
 
@@ -99,33 +99,33 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
             {editingId && <input type="hidden" name="id" value={editingId} />}
             <div className="grid grid-cols-12 gap-6 mb-4">
               <div className="col-span-3 flex flex-col items-center gap-2">
-                <div className="w-20 h-20 rounded-full overflow-hidden bg-gray-100 border border-gray-200 relative group cursor-pointer">
+                <div className="w-20 h-20 rounded-full overflow-hidden bg-background border border-card-border relative group cursor-pointer">
                   {preview ? (
                      <img src={preview} className="w-full h-full object-cover" />
                   ) : (
-                     <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs text-center">No Photo</div>
+                     <div className="w-full h-full flex items-center justify-center text-foreground/30 text-xs text-center">No Photo</div>
                   )}
                   <input type="file" name="image_file" accept="image/*" onChange={handleImageChange} className="absolute inset-0 opacity-0 cursor-pointer" />
                 </div>
                 <span className="text-[10px] text-blue-500 font-bold uppercase">Upload Photo</span>
               </div>
               <div className="col-span-9 grid grid-cols-2 gap-4">
-                <input name="name" placeholder="Name" defaultValue={endorsements.find(e => e.id === editingId)?.name} required className="p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none" />
-                <input name="role" placeholder="Role / Title" defaultValue={endorsements.find(e => e.id === editingId)?.role} required className="p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none" />
+                <input name="name" placeholder="Name" defaultValue={endorsements.find(e => e.id === editingId)?.name} required className="p-3 border border-card-border rounded-xl bg-background text-foreground focus:bg-card-bg outline-none" />
+                <input name="role" placeholder="Role / Title" defaultValue={endorsements.find(e => e.id === editingId)?.role} required className="p-3 border border-card-border rounded-xl bg-background text-foreground focus:bg-card-bg outline-none" />
                 
-                <input name="linkedin_url" placeholder="LinkedIn Profile URL" defaultValue={endorsements.find(e => e.id === editingId)?.linkedin_url || ''} className="col-span-2 p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none" />
+                <input name="linkedin_url" placeholder="LinkedIn Profile URL" defaultValue={endorsements.find(e => e.id === editingId)?.linkedin_url || ''} className="col-span-2 p-3 border border-card-border rounded-xl bg-background text-foreground focus:bg-card-bg outline-none" />
                 
-                <select name="color_class" defaultValue={endorsements.find(e => e.id === editingId)?.color_class || 'from-blue-500 to-blue-700'} className="col-span-2 p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none cursor-pointer">
+                <select name="color_class" defaultValue={endorsements.find(e => e.id === editingId)?.color_class || 'from-blue-500 to-blue-700'} className="col-span-2 p-3 border border-card-border rounded-xl bg-background text-foreground focus:bg-card-bg outline-none cursor-pointer">
                   <option value="from-blue-500 to-blue-700">Fallback: Blue Gradient</option>
                   <option value="from-purple-500 to-pink-500">Fallback: Purple Gradient</option>
                   <option value="bg-gray-800">Fallback: Solid Dark</option>
                 </select>
                 
-                <textarea name="text" rows={3} placeholder="Endorsement Text" defaultValue={endorsements.find(e => e.id === editingId)?.text} required className="col-span-2 p-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white outline-none" />
+                <textarea name="text" rows={3} placeholder="Endorsement Text" defaultValue={endorsements.find(e => e.id === editingId)?.text} required className="col-span-2 p-3 border border-card-border rounded-xl bg-background text-foreground focus:bg-card-bg outline-none" />
               </div>
             </div>
 
-            <button type="submit" className="w-full bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 shadow-lg shadow-blue-500/20 transition transform active:scale-[0.98] cursor-pointer">
+            <button type="submit" className="w-full bg-accent text-accent-foreground px-8 py-3 rounded-xl font-bold hover:opacity-90 shadow-lg transition transform active:scale-[0.98] cursor-pointer">
               {editingId ? 'Update Endorsement' : 'Save Endorsement'}
             </button>
           </form>
@@ -134,11 +134,11 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {endorsements.map((end) => (
-          <div key={end.id} className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition flex flex-col justify-between group">
+          <div key={end.id} className="bg-card-bg p-6 rounded-xl border border-card-border hover:shadow-md transition flex flex-col justify-between group">
             <div>
               <div className="flex items-center gap-3 mb-3">
                 {end.image_url ? (
-                   <img src={getImageUrl(end.image_url)!} className="w-10 h-10 rounded-full object-cover border border-gray-100 shadow-sm" />
+                   <img src={getImageUrl(end.image_url)!} className="w-10 h-10 rounded-full object-cover border border-card-border shadow-sm" />
                 ) : (
                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${end.color_class} flex items-center justify-center text-white font-bold text-xs`}>
                      {end.name[0]}
@@ -146,8 +146,8 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
                 )}
                 
                 <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-sm truncate">{end.name}</h4>
-                  <div className="text-[10px] text-gray-500 uppercase truncate">{end.role}</div>
+                  <h4 className="font-bold text-sm truncate text-foreground">{end.name}</h4>
+                  <div className="text-[10px] text-foreground/50 uppercase truncate">{end.role}</div>
                   {end.linkedin_url && (
                     <a href={end.linkedin_url} target="_blank" className="text-[10px] text-blue-500 hover:underline flex items-center gap-1 mt-0.5 cursor-pointer">
                        View LinkedIn
@@ -156,11 +156,11 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
                   )}
                 </div>
               </div>
-              <p className="text-gray-600 text-sm italic line-clamp-3">"{end.text}"</p>
+              <p className="text-foreground/70 text-sm italic line-clamp-3">"{end.text}"</p>
             </div>
-            <div className="flex gap-3 text-sm mt-4 pt-4 border-t border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex gap-3 text-sm mt-4 pt-4 border-t border-card-border opacity-0 group-hover:opacity-100 transition-opacity">
               <button onClick={() => handleEdit(end)} className="text-blue-500 hover:text-blue-700 font-bold cursor-pointer">Edit</button>
-              <span className="text-gray-300">|</span>
+              <span className="text-foreground/20">|</span>
               <button onClick={() => deleteEndorsement(end.id)} className="text-red-400 hover:text-red-600 cursor-pointer">Delete</button>
             </div>
           </div>
