@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { updateProfile } from '@/app/dashboard/actions'
 import { Tables } from '@/types/supabase'
 import { toast } from 'sonner'
+import RichTextEditor from '@/components/ui/RichTextEditor'
 
 const getImageUrl = (path: string | null) => {
   if (!path) return null
@@ -14,6 +15,11 @@ const getImageUrl = (path: string | null) => {
 export default function ProfileTab({ profile }: { profile: Tables<'profiles'> }) {
   const [loading, setLoading] = useState(false)
   const [preview, setPreview] = useState<string | null>(getImageUrl(profile.profile_image))
+
+  const [heroTitle, setHeroTitle] = useState(profile.hero_title || '')
+  const [heroSubtitle, setHeroSubtitle] = useState(profile.hero_subtitle || '')
+  const [headline, setHeadline] = useState(profile.headline || '')
+  const [subHeadline, setSubHeadline] = useState(profile.sub_headline || '')
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -77,21 +83,17 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
               </h3>
               <div>
                 <label className="block text-xs font-bold text-accent-foreground/50 uppercase tracking-widest mb-2">Card Title (Name)</label>
-                <textarea 
-                  name="hero_title" 
-                  defaultValue={profile.hero_title || 'Sudeep<br>Dalal'} 
-                  className="w-full p-4 rounded-xl bg-accent-foreground/10 border-0 text-accent-foreground font-mono text-2xl focus:ring-1 focus:ring-accent-foreground/50 focus:outline-none" 
-                  rows={2} 
-                />
+                <div className="text-black"> {/* Wrapper to reset text color for editor inside dark accent card */}
+                    <RichTextEditor content={heroTitle} onChange={setHeroTitle} />
+                </div>
+                <input type="hidden" name="hero_title" value={heroTitle} />
               </div>
               <div>
                 <label className="block text-xs font-bold text-accent-foreground/50 uppercase tracking-widest mb-2">Card Subtitle (Role)</label>
-                <textarea 
-                  name="hero_subtitle" 
-                  defaultValue={profile.hero_subtitle || 'Assistant Manager'} 
-                  className="w-full p-4 rounded-xl bg-accent-foreground/10 border-0 text-accent-foreground/80 font-mono text-sm focus:ring-1 focus:ring-accent-foreground/50 focus:outline-none" 
-                  rows={2} 
-                />
+                <div className="text-black">
+                    <RichTextEditor content={heroSubtitle} onChange={setHeroSubtitle} />
+                </div>
+                <input type="hidden" name="hero_subtitle" value={heroSubtitle} />
               </div>
             </div>
 
@@ -100,24 +102,15 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
                 Main Page Content
               </h3>
               <div>
-                <label className="flex justify-between items-center mb-3">
-                  <span className="text-xs font-bold text-foreground/60 uppercase tracking-widest">Page Headline</span>
-                  <span className="text-[10px] text-foreground/40 bg-card-bg px-2 py-1 rounded border border-card-border">Supports HTML</span>
-                </label>
-                <textarea 
-                  name="headline" 
-                  defaultValue={profile.headline || ''}
-                  className="w-full p-4 rounded-xl border border-card-border bg-card-bg text-foreground shadow-sm focus:ring-2 focus:ring-accent font-mono text-sm focus:outline-none"
-                  rows={2}
-                />
+                <label className="block text-xs font-bold text-foreground/60 uppercase tracking-widest mb-3">Page Headline</label>
+                <RichTextEditor content={headline} onChange={setHeadline} />
+                <input type="hidden" name="headline" value={headline} />
               </div>
+
               <div>
                 <label className="block text-xs font-bold text-foreground/60 uppercase tracking-widest mb-3">Bio / Summary</label>
-                <textarea 
-                  name="sub_headline"
-                  defaultValue={profile.sub_headline || ''}
-                  className="w-full p-4 rounded-xl border border-card-border bg-card-bg text-foreground shadow-sm focus:ring-2 focus:ring-accent h-48 font-mono text-sm focus:outline-none"
-                />
+                <RichTextEditor content={subHeadline} onChange={setSubHeadline} />
+                <input type="hidden" name="sub_headline" value={subHeadline} />
               </div>
             </div>
             
