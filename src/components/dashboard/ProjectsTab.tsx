@@ -87,7 +87,7 @@ export default function ProjectsTab({ projects, experiences, profile }: Props) {
             toast.success("Project deleted")
         }
       },
-      cancel: { label: "Cancel" }
+      cancel: { label: "Cancel", onClick: () => {} } 
     })
   }
 

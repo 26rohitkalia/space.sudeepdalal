@@ -51,7 +51,7 @@ export default function EndorsementsTab({ endorsements, tickerSpeed }: Props) {
             toast.success("Deleted")
         }
       },
-      cancel: { label: "Cancel" }
+      cancel: { label: "Cancel", onClick: () => {} } 
     })
   }
 

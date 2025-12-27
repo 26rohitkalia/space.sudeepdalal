@@ -34,7 +34,7 @@ export default function EducationTab({ education }: { education: Tables<'educati
             toast.success("Entry deleted")
         }
       },
-      cancel: { label: "Cancel" }
+      cancel: { label: "Cancel", onClick: () => {} }
     })
   }
 

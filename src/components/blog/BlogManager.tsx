@@ -57,7 +57,7 @@ export default function BlogManager({ posts, profile }: Props) {
              else toast.success("Post deleted")
           }
         },
-        cancel: { label: "Cancel" },
+        cancel: { label: "Cancel", onClick: () => {} },
         duration: 5000,
       })
   }

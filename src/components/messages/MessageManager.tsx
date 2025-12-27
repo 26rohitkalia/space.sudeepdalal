@@ -30,7 +30,7 @@ export default function MessageManager({ messages, view }: { messages: Message[]
             toast.success("Message deleted")
         }
       },
-      cancel: { label: "Cancel" }
+      cancel: { label: "Cancel", onClick: () => {} } 
     })
   }
 

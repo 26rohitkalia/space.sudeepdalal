@@ -39,7 +39,7 @@ export default function HistoryTab({ experiences }: { experiences: Tables<'exper
             toast.success("Deleted successfully")
         }
       },
-      cancel: { label: "Cancel" }
+      cancel: { label: "Cancel", onClick: () => {} } 
     })
   }
 
