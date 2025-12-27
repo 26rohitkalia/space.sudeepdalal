@@ -31,7 +31,6 @@ export default function UserMenu({ user }: { user: User | null }) {
     return (
       <Link 
         href="/login" 
-        // Themed Login Button
         className="px-6 py-2.5 rounded-full bg-accent text-accent-foreground hover:opacity-90 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 duration-300 text-[11px] font-semibold tracking-widest cursor-pointer"
       >
         Login
@@ -43,7 +42,6 @@ export default function UserMenu({ user }: { user: User | null }) {
     <div className="relative" ref={menuRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)} 
-        // Themed Toggle Button
         className="flex items-center gap-1 text-foreground/60 hover:text-foreground hover:bg-foreground/5 px-3 py-1.5 rounded-lg transition-all uppercase text-[11px] font-semibold tracking-widest cursor-pointer"
       >
         Manager
@@ -53,8 +51,7 @@ export default function UserMenu({ user }: { user: User | null }) {
       </button>
 
       <div 
-        // Themed Dropdown Container
-        className={`absolute right-0 mt-4 w-48 bg-card-bg rounded-xl shadow-2xl border border-card-border overflow-hidden py-1 z-50 transition-all duration-200 origin-top-right ${
+        className={`absolute right-0 mt-4 w-56 bg-card-bg rounded-xl shadow-2xl border border-card-border overflow-hidden py-1 z-50 transition-all duration-200 origin-top-right ${
           isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
         }`}
       >
@@ -76,13 +73,17 @@ export default function UserMenu({ user }: { user: User | null }) {
           onClick={() => setIsOpen(false)}
           className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer"
         >
-          Settings
+          Site Settings
         </Link>
-        
-        <button className="w-full text-left px-4 py-3 text-sm text-foreground/30 cursor-not-allowed hover:bg-foreground/5 transition flex justify-between items-center">
-          Blog 
-          <span className="text-[9px] border border-card-border rounded px-1 text-foreground/30">SOON</span>
-        </button>
+
+        <Link 
+            href="/blog"
+            onClick={() => setIsOpen(false)}
+            className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer flex justify-between items-center"
+        >
+          Insights / Blog
+          <span className="text-[9px] bg-accent/10 text-accent border border-accent/20 rounded px-1.5 py-0.5">CMS</span>
+        </Link>
         
         <div className="border-t border-card-border my-1"></div>
         

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Tables } from '@/types/supabase'
-import { deleteEducation, upsertEducation } from '@/app/dashboard/actions'
+import { deleteEducation, upsertEducation } from '@/app/dashboard/actions/education'
 
 export default function EducationTab({ education }: { education: Tables<'education'>[] }) {
   const [editingId, setEditingId] = useState<number | null>(null)

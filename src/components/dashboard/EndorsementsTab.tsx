@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { Tables } from '@/types/supabase'
-import { deleteEndorsement, upsertEndorsement, updateTickerSpeed } from '@/app/dashboard/actions'
+import { deleteEndorsement, upsertEndorsement } from '@/app/dashboard/actions/endorsements'
+import { updateTickerSpeed } from '@/app/dashboard/actions/profile'
 import { toast } from 'sonner'
 
 interface Props {

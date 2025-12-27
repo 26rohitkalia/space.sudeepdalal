@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { updateProfile } from '@/app/dashboard/actions'
+import { updateProfile } from '@/app/dashboard/actions/profile'
 import { Tables } from '@/types/supabase'
 import { toast } from 'sonner'
 import RichTextEditor from '@/components/ui/RichTextEditor'

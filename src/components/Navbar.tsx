@@ -20,7 +20,7 @@ export default async function Navbar() {
         <div className="hidden md:flex gap-10 text-[11px] font-semibold tracking-widest text-foreground/50">
           <Link href="/#profile" className="nav-link hover:text-foreground transition-colors">PROFILE</Link>
           <Link href="/projects" className="nav-link hover:text-foreground transition-colors">PROJECTS</Link>
-          <button className="nav-link hover:text-foreground transition-colors cursor-not-allowed opacity-50">INSIGHTS</button>
+          <Link href="/insights" className="nav-link hover:text-foreground transition-colors">INSIGHTS</Link>
           <button className="nav-link hover:text-foreground transition-colors cursor-not-allowed opacity-50">CONTACT</button>
         </div>
 

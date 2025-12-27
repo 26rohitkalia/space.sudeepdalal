@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Tables } from '@/types/supabase'
-import { deleteProject, upsertProject, updateProjectsViewLayout } from '@/app/dashboard/actions'
+import { deleteProject, upsertProject, updateProjectsViewLayout } from '@/app/dashboard/actions/projects'
 import RichTextEditor from '@/components/ui/RichTextEditor'
 import { toast } from 'sonner'
 

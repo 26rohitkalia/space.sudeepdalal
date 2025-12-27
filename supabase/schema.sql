@@ -28,7 +28,7 @@ create table public.experiences (
   duration text not null,
   description text,
   color_class text default 'bg-blue-600',
-  order_index integer default 0, -- renamed from 'order' which is a reserved keyword
+  order_index integer default 0,
   created_at timestamp with time zone default timezone('utc'::text, now())
 );
 

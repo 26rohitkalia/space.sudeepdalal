@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Tables } from '@/types/supabase'
-import { deleteExperience, upsertExperience } from '@/app/dashboard/actions'
+import { deleteExperience, upsertExperience } from '@/app/dashboard/actions/experience'
 import RichTextEditor from '@/components/ui/RichTextEditor'
 
 export default function HistoryTab({ experiences }: { experiences: Tables<'experiences'>[] }) {
