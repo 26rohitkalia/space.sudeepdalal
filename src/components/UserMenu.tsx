@@ -50,59 +50,59 @@ export default function UserMenu({ user }: { user: User | null }) {
         </svg>
       </button>
 
-      <div 
-        className={`absolute right-0 mt-4 w-56 bg-card-bg rounded-xl shadow-2xl border border-card-border overflow-hidden py-1 z-50 transition-all duration-200 origin-top-right ${
-          isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
-        }`}
-      >
-        <div className="px-4 py-3 border-b border-card-border">
-           <p className="text-[10px] text-foreground/40 uppercase tracking-widest">Signed in as</p>
-           <p className="text-xs font-bold truncate text-foreground">{user.email}</p>
+      {isOpen && (
+        <div 
+            className="absolute right-0 mt-4 w-56 bg-card-bg rounded-xl shadow-2xl border border-card-border overflow-hidden py-1 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+        >
+            <div className="px-4 py-3 border-b border-card-border">
+            <p className="text-[10px] text-foreground/40 uppercase tracking-widest">Signed in as</p>
+            <p className="text-xs font-bold truncate text-foreground">{user.email}</p>
+            </div>
+
+            <Link 
+            href="/dashboard" 
+            onClick={() => setIsOpen(false)}
+            className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer"
+            >
+            Profile Dashboard
+            </Link>
+            
+            <Link 
+            href="/settings"
+            onClick={() => setIsOpen(false)}
+            className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer"
+            >
+            Site Settings
+            </Link>
+
+            <Link 
+                href="/blog"
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer flex justify-between items-center"
+            >
+            Insights / Blog
+            <span className="text-[9px] bg-accent/10 text-accent border border-accent/20 rounded px-1.5 py-0.5">CMS</span>
+            </Link>
+
+            <Link 
+                href="/telemetry"
+                onClick={() => setIsOpen(false)}
+                className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer flex justify-between items-center"
+            >
+            System Status
+            <span className="text-[9px] bg-foreground/10 text-foreground/60 border border-foreground/20 rounded px-1.5 py-0.5">ADMIN</span>
+            </Link>
+            
+            <div className="border-t border-card-border my-1"></div>
+            
+            <button 
+            onClick={handleLogout}
+            className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 transition font-medium cursor-pointer"
+            >
+            Log Out
+            </button>
         </div>
-
-        <Link 
-          href="/dashboard" 
-          onClick={() => setIsOpen(false)}
-          className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer"
-        >
-          Profile Dashboard
-        </Link>
-        
-        <Link 
-          href="/settings"
-          onClick={() => setIsOpen(false)}
-          className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer"
-        >
-          Site Settings
-        </Link>
-
-        <Link 
-            href="/blog"
-            onClick={() => setIsOpen(false)}
-            className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer flex justify-between items-center"
-        >
-          Insights / Blog
-          <span className="text-[9px] bg-accent/10 text-accent border border-accent/20 rounded px-1.5 py-0.5">CMS</span>
-        </Link>
-
-        <Link 
-            href="/telemetry"
-            onClick={() => setIsOpen(false)}
-            className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer flex justify-between items-center"
-        >
-          System Status
-          <span className="text-[9px] bg-foreground/10 text-foreground/60 border border-foreground/20 rounded px-1.5 py-0.5">ADMIN</span>
-        </Link>
-        
-        <div className="border-t border-card-border my-1"></div>
-        
-        <button 
-          onClick={handleLogout}
-          className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 transition font-medium cursor-pointer"
-        >
-          Log Out
-        </button>
-      </div>
+      )}
     </div>
   )
 }
