@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      analytics_visits: {
+        Row: {
+          city: string | null
+          country: string | null
+          created_at: string | null
+          id: number
+          ip_address: string | null
+          path: string
+          user_agent: string | null
+        }
+        Insert: {
+          city?: string | null
+          country?: string | null
+          created_at?: string | null
+          id?: number
+          ip_address?: string | null
+          path: string
+          user_agent?: string | null
+        }
+        Update: {
+          city?: string | null
+          country?: string | null
+          created_at?: string | null
+          id?: number
+          ip_address?: string | null
+          path?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
+      contact_messages: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: number
+          is_read: boolean | null
+          is_saved: boolean | null
+          message: string
+          name: string
+          phone: string
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: number
+          is_read?: boolean | null
+          is_saved?: boolean | null
+          message: string
+          name: string
+          phone: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: number
+          is_read?: boolean | null
+          is_saved?: boolean | null
+          message?: string
+          name?: string
+          phone?: string
+        }
+        Relationships: []
+      }
       education: {
         Row: {
           created_at: string | null
@@ -146,63 +209,185 @@ export type Database = {
         }
         Relationships: []
       }
+      posts: {
+        Row: {
+          content: string | null
+          created_at: string | null
+          id: number
+          image_url: string | null
+          is_published: boolean | null
+          layout_type: string | null
+          published_at: string | null
+          show_author: boolean | null
+          show_date: boolean | null
+          summary: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string | null
+          id?: number
+          image_url?: string | null
+          is_published?: boolean | null
+          layout_type?: string | null
+          published_at?: string | null
+          show_author?: boolean | null
+          show_date?: boolean | null
+          summary?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string | null
+          id?: number
+          image_url?: string | null
+          is_published?: boolean | null
+          layout_type?: string | null
+          published_at?: string | null
+          show_author?: boolean | null
+          show_date?: boolean | null
+          summary?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
+          custom_font_url: string | null
           facebook_url: string | null
+          font_family: string | null
           headline: string | null
           hero_subtitle: string | null
           hero_title: string | null
           id: string
+          insights_header_subtitle: string | null
+          insights_header_title: string | null
           instagram_url: string | null
           linkedin_url: string | null
           profile_image: string | null
+          projects_header_subtitle: string | null
+          projects_header_title: string | null
+          projects_view_layout: string | null
           resume_file: string | null
           show_facebook: boolean | null
           show_instagram: boolean | null
           show_linkedin: boolean | null
           sub_headline: string | null
+          theme: string | null
           ticker_speed: number | null
           updated_at: string | null
         }
         Insert: {
+          custom_font_url?: string | null
           facebook_url?: string | null
+          font_family?: string | null
           headline?: string | null
           hero_subtitle?: string | null
           hero_title?: string | null
           id: string
+          insights_header_subtitle?: string | null
+          insights_header_title?: string | null
           instagram_url?: string | null
           linkedin_url?: string | null
           profile_image?: string | null
+          projects_header_subtitle?: string | null
+          projects_header_title?: string | null
+          projects_view_layout?: string | null
           resume_file?: string | null
           show_facebook?: boolean | null
           show_instagram?: boolean | null
           show_linkedin?: boolean | null
           sub_headline?: string | null
+          theme?: string | null
           ticker_speed?: number | null
           updated_at?: string | null
         }
         Update: {
+          custom_font_url?: string | null
           facebook_url?: string | null
+          font_family?: string | null
           headline?: string | null
           hero_subtitle?: string | null
           hero_title?: string | null
           id?: string
+          insights_header_subtitle?: string | null
+          insights_header_title?: string | null
           instagram_url?: string | null
           linkedin_url?: string | null
           profile_image?: string | null
+          projects_header_subtitle?: string | null
+          projects_header_title?: string | null
+          projects_view_layout?: string | null
           resume_file?: string | null
           show_facebook?: boolean | null
           show_instagram?: boolean | null
           show_linkedin?: boolean | null
           sub_headline?: string | null
+          theme?: string | null
           ticker_speed?: number | null
           updated_at?: string | null
         }
         Relationships: []
       }
+      projects: {
+        Row: {
+          created_at: string | null
+          experience_id: number | null
+          id: number
+          images: string[] | null
+          layout_type: string | null
+          long_description: string | null
+          order_index: number | null
+          short_description: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          experience_id?: number | null
+          id?: number
+          images?: string[] | null
+          layout_type?: string | null
+          long_description?: string | null
+          order_index?: number | null
+          short_description?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          experience_id?: number | null
+          id?: number
+          images?: string[] | null
+          layout_type?: string | null
+          long_description?: string | null
+          order_index?: number | null
+          short_description?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_experience_id_fkey"
+            columns: ["experience_id"]
+            isOneToOne: false
+            referencedRelation: "experiences"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
-      [_ in never]: never
+      storage_usage: {
+        Row: {
+          file_count: number | null
+          total_bytes: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
