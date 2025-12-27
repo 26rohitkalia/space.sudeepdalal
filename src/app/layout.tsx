@@ -5,6 +5,7 @@ import SmoothScroll from '@/components/SmoothScroll'
 import { Toaster } from 'sonner'
 import { createClient } from '@/lib/supabase/server'
 import ThemeRegistry from '@/components/ThemeRegistry'
+import AnalyticsTracker from '@/components/AnalyticsTracker'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -45,6 +46,7 @@ export default async function RootLayout({
             fontFamily={themeSettings.font_family}
             customFontUrl={themeSettings.custom_font_url}
         />
+        <AnalyticsTracker />
         <SmoothScroll />
         <Navbar />
         <main>{children}</main>

@@ -84,6 +84,15 @@ export default function UserMenu({ user }: { user: User | null }) {
           Insights / Blog
           <span className="text-[9px] bg-accent/10 text-accent border border-accent/20 rounded px-1.5 py-0.5">CMS</span>
         </Link>
+
+        <Link 
+            href="/telemetry"
+            onClick={() => setIsOpen(false)}
+            className="block px-4 py-3 text-sm text-foreground/80 hover:bg-foreground/5 hover:text-foreground transition cursor-pointer flex justify-between items-center"
+        >
+          System Status
+          <span className="text-[9px] bg-foreground/10 text-foreground/60 border border-foreground/20 rounded px-1.5 py-0.5">ADMIN</span>
+        </Link>
         
         <div className="border-t border-card-border my-1"></div>
         
