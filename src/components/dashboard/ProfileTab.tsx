@@ -48,8 +48,7 @@ export default function ProfileTab({ profile }: { profile: Tables<'profiles'> })
       </div>
 
       <form action={handleSubmit} className="bg-card-bg p-10 rounded-[2.5rem] shadow-sm border border-card-border">
-        <div className="grid md:grid-cols-12 gap-12">
-          
+        <div className="grid md:grid-cols-12 gap-6 md:gap-12">          
           <div className="md:col-span-4 flex flex-col items-center pt-4 space-y-8">
             <div className="relative group cursor-pointer w-64 h-64">
               <div className="w-full h-full rounded-full overflow-hidden border-[8px] border-card-bg shadow-2xl bg-background relative z-10">

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import UserMenu from './UserMenu'
+import MobileNav from './MobileNav'
 
 export default async function Navbar() {
   const supabase = await createClient()
@@ -41,16 +42,21 @@ export default async function Navbar() {
           <Link href="/contact" className="nav-link hover:text-foreground transition-colors">CONTACT</Link>
         </div>
 
-        <div className="text-[11px] font-semibold tracking-widest flex items-center gap-6">
-          {user && (
-            <Link href="/messages" className="relative text-foreground/60 hover:text-accent transition-colors group">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-              {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-background"></span>
-              )}
-            </Link>
-          )}
-          <UserMenu user={user} />
+        <div className="flex items-center gap-4">
+          <div className="text-[11px] font-semibold tracking-widest flex items-center gap-6">
+            {user && (
+              <Link href="/messages" className="relative text-foreground/60 hover:text-accent transition-colors group">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                {unreadCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-background"></span>
+                )}
+              </Link>
+            )}
+            <div className="hidden md:block">
+                <UserMenu user={user} />
+            </div>
+          </div>
+          <MobileNav user={user} blogTitle={blogTitle} />
         </div>
       </div>
     </nav>
