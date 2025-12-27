@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import BlogManager from '@/components/blog/BlogManager'
+import { Tables } from '@/types/supabase'
 
 export default async function PostsDashboardPage() {
   const supabase = await createClient()
