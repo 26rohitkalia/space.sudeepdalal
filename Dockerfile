@@ -2,13 +2,13 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy package.json only first (better caching)
+COPY package.json ./
 
-# Install dependencies
-RUN npm install
+# --legacy-peer-deps is REQUIRED for Next.js 15 + React 19 RC
+RUN npm install --legacy-peer-deps
 
-# Copy source
+# Copy the rest of the source code
 COPY . .
 
 # Next.js default port
