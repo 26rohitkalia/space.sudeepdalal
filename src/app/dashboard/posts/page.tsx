@@ -9,12 +9,19 @@ export default async function PostsDashboardPage() {
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single()
 
-  const { data: posts } = await supabase
+  const { data: fetchedPosts } = await supabase
     .from('posts')
     .select('*')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
+
+  const posts: Tables<'posts'>[] = fetchedPosts || []
 
   return (
     <div className="h-full flex flex-col">
@@ -31,7 +38,7 @@ export default async function PostsDashboardPage() {
             </div>
        </div>
        <div className="flex-1">
-            <BlogManager posts={posts || []} />
+            <BlogManager posts={posts} profile={profile!} />
        </div>
     </div>
   )
