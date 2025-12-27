@@ -4,6 +4,7 @@ import ProfileTab from '@/components/dashboard/ProfileTab'
 import HistoryTab from '@/components/dashboard/HistoryTab'
 import EducationTab from '@/components/dashboard/EducationTab'
 import EndorsementsTab from '@/components/dashboard/EndorsementsTab'
+import ProjectsTab from '@/components/dashboard/ProjectsTab'
 
 export default async function DashboardPage({
   searchParams,
@@ -38,11 +39,13 @@ export default async function DashboardPage({
   const [
     { data: experiences },
     { data: education },
-    { data: endorsements }
+    { data: endorsements },
+    { data: projects }
   ] = await Promise.all([
     supabase.from('experiences').select('*').eq('user_id', user.id).order('order_index', { ascending: true }),
     supabase.from('education').select('*').eq('user_id', user.id).order('order_index', { ascending: true }),
-    supabase.from('endorsements').select('*').eq('user_id', user.id).order('created_at', { ascending: true })
+    supabase.from('endorsements').select('*').eq('user_id', user.id).order('created_at', { ascending: true }),
+    supabase.from('projects').select('*').eq('user_id', user.id).order('order_index', { ascending: true })
   ])
 
   return (
@@ -53,6 +56,14 @@ export default async function DashboardPage({
 
       {tab === 'history' && (
         <HistoryTab experiences={experiences || []} />
+      )}
+
+      {tab === 'projects' && profile && (
+        <ProjectsTab 
+            projects={projects || []} 
+            experiences={experiences || []} 
+            profile={profile}
+        />
       )}
 
       {tab === 'education' && (

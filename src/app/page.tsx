@@ -1,14 +1,24 @@
 import { createClient } from '@/lib/supabase/server'
 import Hero from '@/components/Hero'
 import Endorsements from '@/components/Endorsements'
+import ProjectSlider from '@/components/ProjectSlider'
 
 export default async function HomePage() {
   const supabase = await createClient()
 
-  const { data: profile } = await supabase.from('profiles').select('*').single()
-  const { data: experiences } = await supabase.from('experiences').select('*').order('order_index')
-  const { data: education } = await supabase.from('education').select('*').order('order_index')
-  const { data: endorsements } = await supabase.from('endorsements').select('*').order('created_at')
+  const [
+    { data: profile },
+    { data: experiences },
+    { data: education },
+    { data: endorsements },
+    { data: projects }
+  ] = await Promise.all([
+    supabase.from('profiles').select('*').single(),
+    supabase.from('experiences').select('*').order('order_index'),
+    supabase.from('education').select('*').order('order_index'),
+    supabase.from('endorsements').select('*').order('created_at'),
+    supabase.from('projects').select('*').order('order_index')
+  ])
 
   if (!profile) {
     return <div className="p-8 text-foreground">Please log in to the dashboard to create your profile.</div>
@@ -28,18 +38,23 @@ export default async function HomePage() {
         
         <section className="mb-40">
           <h3 data-aos="fade-up" className="text-xs font-bold text-foreground/40 uppercase tracking-[0.2em] mb-16">Professional History</h3>
-          {/* Using border-card-border for the timeline line */}
+          
           <div className="space-y-20 border-l border-card-border ml-3 pl-12 md:pl-20 relative">
-            {experiences?.map((exp) => (
-              <div key={exp.id} className="relative group" data-aos="fade-up">
-                {/* Dot background needs to match page background to look like a cutout */}
-                <div className={`absolute -left-[3.65rem] md:-left-[5.65rem] top-2.5 w-4 h-4 ${exp.color_class} rounded-full ring-8 ring-background`} />
-                <h4 className="text-3xl font-bold text-foreground">{exp.company}</h4>
-                <div className="text-lg font-medium text-foreground/80 mb-4">{exp.role} | {exp.duration}</div>
-                <div className="text-foreground/60 text-base leading-relaxed max-w-2xl prose prose-sm prose-p:text-foreground/60 prose-strong:text-foreground"
-                     dangerouslySetInnerHTML={{ __html: exp.description || '' }} />
-              </div>
-            ))}
+            {experiences?.map((exp) => {
+              const jobProjects = projects?.filter(p => p.experience_id === exp.id) || []
+
+              return (
+                <div key={exp.id} className="relative group" data-aos="fade-up">
+                  <div className={`absolute -left-[3.65rem] md:-left-[5.65rem] top-2.5 w-4 h-4 ${exp.color_class} rounded-full ring-8 ring-background`} />
+                  <h4 className="text-3xl font-bold text-foreground">{exp.company}</h4>
+                  <div className="text-lg font-medium text-foreground/80 mb-4">{exp.role} | {exp.duration}</div>
+                  <div className="text-foreground/60 text-base leading-relaxed max-w-2xl prose prose-sm prose-p:text-foreground/60 prose-strong:text-foreground"
+                       dangerouslySetInnerHTML={{ __html: exp.description || '' }} />
+                  
+                  <ProjectSlider projects={jobProjects} />
+                </div>
+              )
+            })}
           </div>
         </section>
 

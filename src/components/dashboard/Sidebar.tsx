@@ -77,6 +77,15 @@ export default function Sidebar({ profileImage }: SidebarProps) {
           </div>
           <span className={`${!sidebarOpen && 'hidden'} text-sm font-medium`}>Endorsements</span>
         </Link>
+        <Link 
+          href="/dashboard?tab=projects"
+          className="flex items-center gap-4 p-3 rounded-xl hover:bg-accent-foreground/10 transition group cursor-pointer whitespace-nowrap"
+        >
+          <div className="w-8 h-8 min-w-[2rem] rounded-lg bg-accent-foreground/10 flex items-center justify-center text-accent-foreground/60 group-hover:text-accent-foreground">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+          </div>
+          <span className={`${!sidebarOpen && 'hidden'} text-sm font-medium`}>Projects</span>
+        </Link>
       </nav>
       
       <div className="p-4 border-t border-accent-foreground/10 overflow-hidden">
