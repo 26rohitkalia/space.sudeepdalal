@@ -6,6 +6,14 @@ export default async function Navbar() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('insights_header_title')
+    .limit(1)
+    .single()
+
+  const blogTitle = profile?.insights_header_title?.replace(/<[^>]*>?/gm, '') || 'INSIGHTS'
+
   let unreadCount = 0
   if (user) {
     const { count } = await supabase
@@ -29,7 +37,7 @@ export default async function Navbar() {
         <div className="hidden md:flex gap-10 text-[11px] font-semibold tracking-widest text-foreground/50">
           <Link href="/#profile" className="nav-link hover:text-foreground transition-colors">PROFILE</Link>
           <Link href="/projects" className="nav-link hover:text-foreground transition-colors">PROJECTS</Link>
-          <Link href="/insights" className="nav-link hover:text-foreground transition-colors">INSIGHTS</Link>
+          <Link href="/insights" className="nav-link hover:text-foreground transition-colors uppercase">{blogTitle}</Link>
           <Link href="/contact" className="nav-link hover:text-foreground transition-colors">CONTACT</Link>
         </div>
 

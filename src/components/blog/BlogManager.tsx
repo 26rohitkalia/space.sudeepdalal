@@ -47,11 +47,19 @@ export default function BlogManager({ posts, profile }: Props) {
     setLoading(false)
   }
 
-  const handleDelete = async (id: number) => {
-      if(!confirm("Are you sure? This cannot be undone.")) return;
-      const result = await deletePost(id)
-      if (result?.error) toast.error(result.error)
-      else toast.success("Post deleted")
+  const handleDelete = (id: number) => {
+      toast("Are you sure you want to delete this post?", {
+        action: {
+          label: "Delete",
+          onClick: async () => {
+             const result = await deletePost(id)
+             if (result?.error) toast.error(result.error)
+             else toast.success("Post deleted")
+          }
+        },
+        cancel: { label: "Cancel" },
+        duration: 5000,
+      })
   }
 
   return (

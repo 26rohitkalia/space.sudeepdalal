@@ -30,6 +30,7 @@ export default function ProjectsTab({ projects, experiences, profile }: Props) {
     setCurrentImages(proj.images || [])
     setUploadQueue([])
     setIsFormOpen(true)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleAddNew = () => {
@@ -77,11 +78,24 @@ export default function ProjectsTab({ projects, experiences, profile }: Props) {
       toast.success('Page settings saved')
   }
 
+  const handleDelete = (id: number) => {
+    toast("Delete this project?", {
+      action: {
+        label: "Delete",
+        onClick: async () => {
+            await deleteProject(id)
+            toast.success("Project deleted")
+        }
+      },
+      cancel: { label: "Cancel" }
+    })
+  }
+
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       
-      <form action={handleSettingsSubmit} className="bg-accent text-accent-foreground p-8 rounded-2xl shadow-lg space-y-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-6 border-b border-white/10">
+      <form action={handleSettingsSubmit} className="bg-accent text-accent-foreground p-8 rounded-2xl shadow-lg space-y-8 border border-card-border">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-6 border-b border-accent-foreground/10">
             <div>
                 <h3 className="font-bold text-xl">Projects Page Settings</h3>
                 <p className="text-xs text-accent-foreground/60">Customize the public appearance of /projects</p>
@@ -136,7 +150,7 @@ export default function ProjectsTab({ projects, experiences, profile }: Props) {
         {!isFormOpen && (
           <button 
             onClick={handleAddNew} 
-            className="bg-accent text-accent-foreground px-5 py-2 rounded-lg text-sm font-bold shadow-lg hover:opacity-90 transition cursor-pointer"
+            className="bg-accent text-accent-foreground px-5 py-2 rounded-lg text-sm font-bold shadow-lg hover:opacity-90 transition cursor-pointer border border-card-border"
           >
             + Add Project
           </button>
@@ -147,7 +161,7 @@ export default function ProjectsTab({ projects, experiences, profile }: Props) {
         <div className="bg-card-bg p-8 rounded-[2rem] shadow-sm border border-card-border transition-all">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-sm font-bold text-foreground/50 uppercase">{editingId ? 'Edit Project' : 'New Project'}</h3>
-            <button onClick={handleCancel} className="text-xs text-red-400 font-bold uppercase hover:text-red-600 cursor-pointer">Cancel</button>
+            <button onClick={handleCancel} className="text-xs text-red-500 font-bold uppercase hover:underline cursor-pointer">Cancel</button>
           </div>
 
           <form action={handleSubmit} className="space-y-6">
@@ -156,7 +170,7 @@ export default function ProjectsTab({ projects, experiences, profile }: Props) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label className="block text-xs font-bold text-foreground/40 uppercase mb-2">Project Title</label>
-                    <input name="title" placeholder="Project Name" defaultValue={projects.find(p => p.id === editingId)?.title} required className="w-full p-3 border border-card-border rounded-xl bg-background text-foreground focus:ring-2 focus:ring-accent outline-none" />
+                    <input name="title" placeholder="Project Name" defaultValue={projects.find(p => p.id === editingId)?.title} required className="w-full p-3 border border-card-border rounded-xl bg-background text-foreground focus:ring-2 focus:ring-accent outline-none placeholder-foreground/30" />
                 </div>
                 <div>
                     <label className="block text-xs font-bold text-foreground/40 uppercase mb-2">Associated Job</label>
@@ -171,12 +185,12 @@ export default function ProjectsTab({ projects, experiences, profile }: Props) {
 
             <div>
                 <label className="block text-xs font-bold text-foreground/40 uppercase mb-2">Short Description (Ticker/Card)</label>
-                <textarea name="short_description" rows={2} defaultValue={projects.find(p => p.id === editingId)?.short_description || ''} className="w-full p-3 border border-card-border rounded-xl bg-background text-foreground focus:ring-2 focus:ring-accent outline-none" />
+                <textarea name="short_description" rows={2} defaultValue={projects.find(p => p.id === editingId)?.short_description || ''} className="w-full p-3 border border-card-border rounded-xl bg-background text-foreground focus:ring-2 focus:ring-accent outline-none placeholder-foreground/30" />
             </div>
 
             <div>
                 <label className="block text-xs font-bold text-foreground/40 uppercase mb-2">Full Case Study (WYSIWYG)</label>
-                <div className="text-black">
+                <div className="text-foreground">
                      <RichTextEditor content={longDesc} onChange={setLongDesc} />
                 </div>
                 <input type="hidden" name="long_description" value={longDesc} />
@@ -209,11 +223,15 @@ export default function ProjectsTab({ projects, experiences, profile }: Props) {
                         ))}
                         {uploadQueue.map((file, idx) => (
                              <div key={`new-${idx}`} className="relative w-20 h-20 rounded-lg overflow-hidden border-2 border-accent border-dashed flex items-center justify-center bg-accent/5">
-                                <span className="text-[9px] text-center p-1 truncate w-full">{file.name}</span>
+                                <span className="text-[9px] text-center p-1 truncate w-full text-foreground/60">{file.name}</span>
                              </div>
                         ))}
                     </div>
-                    <input type="file" name="images" multiple accept="image/*" onChange={handleFileSelect} className="block w-full text-sm text-foreground/60 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-accent file:text-accent-foreground hover:file:bg-accent/90 cursor-pointer" />
+                    <label className="flex items-center gap-2 cursor-pointer bg-card-bg border border-card-border hover:border-accent rounded-xl p-3 w-fit transition-colors">
+                        <svg className="w-5 h-5 text-foreground/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                        <span className="text-xs font-bold text-foreground/60 uppercase">Add Images</span>
+                        <input type="file" name="images" multiple accept="image/*" onChange={handleFileSelect} className="hidden" />
+                    </label>
                 </div>
             </div>
 
@@ -249,9 +267,19 @@ export default function ProjectsTab({ projects, experiences, profile }: Props) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex gap-4 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button onClick={() => handleEdit(proj)} className="text-blue-500 hover:text-blue-600 cursor-pointer">Edit</button>
-                        <button onClick={() => deleteProject(proj.id)} className="text-red-400 hover:text-red-600 cursor-pointer">Delete</button>
+                    <div className="flex gap-3 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button 
+                            onClick={() => handleEdit(proj)} 
+                            className="bg-accent/10 text-accent hover:bg-accent hover:text-accent-foreground px-3 py-1.5 rounded-lg transition-colors cursor-pointer text-xs font-bold uppercase tracking-wide"
+                        >
+                            Edit
+                        </button>
+                        <button 
+                            onClick={() => handleDelete(proj.id)} 
+                            className="bg-background border border-card-border text-foreground/60 hover:text-red-500 hover:border-red-200 px-3 py-1.5 rounded-lg transition-colors cursor-pointer text-xs font-bold uppercase tracking-wide"
+                        >
+                            Delete
+                        </button>
                     </div>
                 </div>
             )

@@ -20,12 +20,18 @@ export default function MessageManager({ messages, view }: { messages: Message[]
 
   const selectedMessage = messages.find(m => m.id === selectedId)
 
-  const handleDelete = async (id: number) => {
-    if (confirm("Permanently delete this message?")) {
-      await deleteMessage(id)
-      if (selectedId === id) setSelectedId(null)
-      toast.success("Message deleted")
-    }
+  const handleDelete = (id: number) => {
+    toast("Permanently delete this message?", {
+      action: {
+        label: "Delete",
+        onClick: async () => {
+            await deleteMessage(id)
+            if (selectedId === id) setSelectedId(null)
+            toast.success("Message deleted")
+        }
+      },
+      cancel: { label: "Cancel" }
+    })
   }
 
   const handleToggleRead = async (msg: Message) => {
